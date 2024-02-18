@@ -30,8 +30,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     }
 
     private void sendLastLines(WebSocketSession session){
-        int i=0;
-        while(i<2){
+        while(true){
             try {
                 long linesCount = Files.lines(Paths.get(LOG_FILE_PATH)).count();
                 if (linesCount > latestLineCount){
@@ -49,7 +48,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                             });
                     TimeUnit.SECONDS.sleep(3);
                 }
-                i++;
+
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <script>
+        let socket = new WebSocket("ws://localhost:8080/log");
+         // Event listener for when the connection is established
+      socket.addEventListener('open', function (event) {
+<!--        addMessage('WebSocket connection established.');-->
+console.log("WebSocket connection established.");
+      });
+
+      // Event listener for messages received from the WebSocket server
+      socket.addEventListener('message', function (event) {
+<!--        addMessage('Received: ' + event.data);-->
+         let logContainer = document.getElementById("logContainer");
+            let logMessage = document.createElement("div");
+            logMessage.textContent = event.data;
+            logContainer.appendChild(logMessage);
+            if (logContainer.children.length > 10) {
+                logContainer.removeChild(logContainer.firstChild);
+            }
+      });
+
+
+
+<!--        ws.onmessage = function (event) {-->
+<!--            let logContainer = document.getElementById("logContainer");-->
+<!--            let logMessage = document.createElement("div");-->
+<!--            logMessage.textContent = event.data;-->
+<!--            logContainer.appendChild(logMessage);-->
+<!--            if (logContainer.children.length > 10) {-->
+<!--                logContainer.removeChild(logContainer.firstChild);-->
+<!--            }-->
+<!--        };-->
+    </script>
+</head>
+<body>
+<h1>Real-time Log Viewer</h1>
+<div id="logContainer"></div>
+</body>
+</html>

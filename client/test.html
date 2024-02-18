@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Watcher Interface</title>
+</head>
+<body>
+
+<p id="logs"></p>
+
+<script>
+    // Function to add message to the paragraph
+    function addLog(log) {
+      const logElement = document.getElementById('logs');
+      logElement.innerHTML += log + '<br>';
+    }
+
+    // WebSocket connection
+    const socket = new WebSocket('ws://localhost:8080/log');
+
+    // Event listener for when the connection is established
+    socket.addEventListener('open', function (event) {
+      addLog('WebSocket connection established.');
+    });
+
+    // Event listener for messages received from the WebSocket server
+    socket.addEventListener('message', function (event) {
+      addLog('Received: ' + event.data);
+    });
+
+    // Event listener for errors
+    socket.addEventListener('error', function (event) {
+      addLog('WebSocket error: ' + event.message);
+    });
+
+    // Event listener for when the connection is closed
+    socket.addEventListener('close', function (event) {
+      addLog('WebSocket connection closed.');
+    });
+</script>
+
+</body>
+</html>

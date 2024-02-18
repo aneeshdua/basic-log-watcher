@@ -10,10 +10,10 @@ You have to implement the following:
 
 
 ### Constraints:
-The server should push updates to the clients as we have to be as real time as possible. [Done]
-Be aware that the log file may be several GB, how to optimise for retrieving the last 10 lines? [Done]
-The server should not retransmit the entire file every time. It should only send the updates.[Done]
-The server should be able to handle multiple clients at the same time.[Done, but needs to be improved with threading]
+* The server should push updates to the clients as we have to be as real time as possible. [Done]
+* Be aware that the log file may be several GB, how to optimise for retrieving the last 10 lines? [Done]
+* The server should not retransmit the entire file every time. It should only send the updates.[Done]
+* The server should be able to handle multiple clients at the same time.[WIP]
 
 The web page should not stay in loading state post the first load and it should not reload thereafter as well.
 You may not use off-the-shelf external libraries or tools to read the file or provide tail-like functionalities.
